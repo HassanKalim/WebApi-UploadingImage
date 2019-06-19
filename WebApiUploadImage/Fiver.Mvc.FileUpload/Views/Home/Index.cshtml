@@ -1,0 +1,90 @@
+﻿
+
+<form asp-controller="Home" asp-action="UploadFile" method="post"
+      enctype="multipart/form-data">
+
+    <input type="file" name="file" />
+    <button type="submit">Upload File</button>
+</form>
+<form asp-controller="Home" asp-action="UploadFiles" method="post"
+      enctype="multipart/form-data">
+    <input type="file" name="files" multiple />
+    <button type="submit">Upload Files</button>
+</form>
+
+<form asp-controller="Home" asp-action="UploadFileViaModel" method="post"
+          enctype="multipart/form-data">
+
+            <input  type="file" name="FileToUpload"   multiple value="Select Files"/>
+
+        <button type="submit">Upload File (model)</button>
+
+    </form>
+
+@*<form asp-controller="Home" asp-action="UploadFileViaModel" method="post"
+      enctype="multipart/form-data">
+
+
+
+    <div class="uploader__contents">
+        <label class="button button--secondary" for="fileinput">Select Files</label>
+        <input name="FileToUpload" id="fileinput" class="uploader__file-input" type="file" multiple value="Select Files">
+    </div>
+    <input class="button button--big-bottom" type="submit" value="Upload Selected Files">
+
+
+</form>*@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.custom-file').on("change", function () {
+
+            console.log($(this));
+            //var fileLabel = $(this).next('.custom-file-label');
+            //var files = $(this)[0].files;
+            //if (files.length > 1) {
+            //    fileLabel.html(files.length + ' files selected');
+            //}
+            //else if (files.length == 1) {
+            //    fileLabel.html(files[0].name);
+            //}
+        });
+    });
+
+
+
+
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnUpload').on('click', function () {
+            var files = $('#fUpload').prop("files");
+            var fdata = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                fdata.append("files", files[i]);
+            }
+            if (files.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Index?handler=Upload",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: fdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        alert('File Uploaded Successfully.')
+                    }
+                });
+            }
+            else {
+                alert('Please select a file.')
+            }
+        })
+    });
+</script>
