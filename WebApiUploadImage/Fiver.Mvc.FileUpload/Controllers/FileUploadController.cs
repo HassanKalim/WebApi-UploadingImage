@@ -22,7 +22,7 @@ namespace Fiver.Mvc.FileUpload.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadFileViaModel(FileInputModel model)
+        public async Task<IActionResult> UploadFileViaModel( FileInputModel model)
         {
             if (model.FileToUpload != null && model.FileToUpload.Count > 0)
             {
@@ -92,24 +92,20 @@ namespace Fiver.Mvc.FileUpload.Controllers
         {
             return new Dictionary<string, string>
             {
-                {".txt", "text/plain"},
+                {".png", "image/png"},
                 {".pdf", "application/pdf"},
                 {".doc", "application/vnd.ms-word"},
                 {".docx", "application/vnd.ms-word"},
                 {".xls", "application/vnd.ms-excel"},
                 {".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
-                {".png", "image/png"},
+                {".txt", "text/plain"},
+                
                 {".jpg", "image/jpeg"},
                 {".jpeg", "image/jpeg"},
                 {".gif", "image/gif"},
                 {".csv", "text/csv"}
             };
         }
-
-
-       
-
-
 
 
     }

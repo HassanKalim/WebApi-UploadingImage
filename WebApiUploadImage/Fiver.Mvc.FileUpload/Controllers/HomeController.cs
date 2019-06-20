@@ -80,11 +80,16 @@ namespace Fiver.Mvc.FileUpload.Controllers
         //    return RedirectToAction("Files");
         //}
 
-
+        //  , string username = "hasan", string password = "12345"
+        // username == "hasan" && password == "12345" && 
 
         public async Task<IActionResult> UploadFileViaModel(FileInputModel model)
         {
-            if (model.FileToUpload != null && model.FileToUpload.Count > 0)
+
+            
+         
+
+            if (model.Username =="Hasan"  && model.Password == 12345 &&  model.FileToUpload != null && model.FileToUpload.Count > 0)
             {
 
                 foreach (IFormFile file in model.FileToUpload)
@@ -150,14 +155,14 @@ namespace Fiver.Mvc.FileUpload.Controllers
         {
             return new Dictionary<string, string>
             {
-                {".txt", "text/plain"},
-                {".pdf", "application/pdf"},
+                { ".png", "image/png"},
+                {".jpg", "image/jpeg"},
                 {".doc", "application/vnd.ms-word"},
                 {".docx", "application/vnd.ms-word"},
                 {".xls", "application/vnd.ms-excel"},
                 {".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
-                {".png", "image/png"},
-                {".jpg", "image/jpeg"},
+                {".txt", "text/plain"},
+                {".pdf", "application/pdf"},
                 {".jpeg", "image/jpeg"},
                 {".gif", "image/gif"},
                 {".csv", "text/csv"}

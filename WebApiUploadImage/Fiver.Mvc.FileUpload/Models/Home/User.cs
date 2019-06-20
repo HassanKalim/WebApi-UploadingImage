@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Fiver.Mvc.FileUpload.Models.Home
 {
-    public class FileInputModel
+    public class User
     {
         public string Username { get; set; }
         public int Password { get; set; }
-        public List<IFormFile> FileToUpload { get; set; }
+
     }
 }
