@@ -13,14 +13,21 @@
 </form>
 
 <form asp-controller="Home" asp-action="UploadFileViaModel" method="post"
-          enctype="multipart/form-data">
-               <input type="text" name="username" id="username" placeholder="Username" />
-            <input type="password" name="password" id="password" placeholder="Password" />
-            <input  type="file" name="FileToUpload"   multiple value="Select Files"/>
+      enctype="multipart/form-data">
+    <input type="text" name="username" id="username" placeholder="Username" />
+    <input type="password" name="password" id="password" placeholder="Password" />
+    @*<input type="text" name="Body" id="Body" placeholder="Body" />
+        <input type="text" name="UserClass" id="UserClass" placeholder="UserClass" />
 
-        <button type="submit">Upload File (model)</button>
+    <input type="imageId" name="imageId" id="imageId" placeholder="imageId" />
+    <input type="imageCaption" name="imageCaption" id="imageCaption" placeholder="imageId" />*@
 
-    </form>
+
+    <input type="file" name="FileToUpload" multiple value="Select Files" />
+
+    <button type="submit">Upload File (model)</button>
+
+</form>
 
 @*<form asp-controller="Home" asp-action="UploadFileViaModel" method="post"
       enctype="multipart/form-data">

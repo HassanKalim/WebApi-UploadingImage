@@ -7,8 +7,8 @@ namespace Fiver.Mvc.FileUpload.Models.Home
 {
     public class User
     {
-        public string Username { get; set; }
-        public int Password { get; set; }
+        public string  UserClass { get; set; }
+        public string Body  { get; set; }
 
     }
 }

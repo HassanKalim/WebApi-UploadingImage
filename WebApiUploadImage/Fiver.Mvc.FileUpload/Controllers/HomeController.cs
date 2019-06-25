@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 using System.IO;
 using Fiver.Mvc.FileUpload.Models.Home;
 using Microsoft.Extensions.FileProviders;
+using Fiver.Mvc.FileUpload.Models;
 
 namespace Fiver.Mvc.FileUpload.Controllers
 {
+    /// <summary>
+    /// /sf
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly IFileProvider fileProvider;
@@ -36,6 +40,16 @@ namespace Fiver.Mvc.FileUpload.Controllers
             {
                 await file.CopyToAsync(stream);
             }
+
+
+
+
+
+
+
+
+
+
 
             return RedirectToAction("Files");
         }
@@ -83,29 +97,69 @@ namespace Fiver.Mvc.FileUpload.Controllers
         //  , string username = "hasan", string password = "12345"
         // username == "hasan" && password == "12345" && 
 
-        public async Task<IActionResult> UploadFileViaModel(FileInputModel model)
+        public async Task<IActionResult> UploadFileViaModel(FileInputModel model , User user)
         {
 
-            
+          //  User c = new User();
          
 
-            if (model.Username =="Hasan"  && model.Password == 12345 &&  model.FileToUpload != null && model.FileToUpload.Count > 0)
+           if (/*  model.Username =="Hasan"  && model.Password == 12345 &&  */model.FileToUpload != null && model.FileToUpload.Count > 0)
             {
 
-                foreach (IFormFile file in model.FileToUpload)
-                {
 
+    //            nearByMePromotionImages
+    //                {
+    //                imageId:'',
+                //    imageCaption: '',
+                //    imagePath
+                //    promotionId
+                //    featuredImage
+                //    createdDate
+                //    updatedDate
+                //}
+                            List<FileDetails> imagesName = new List<FileDetails>();
+                List<NearByMePromotionImage> nearByMePromotionImages = new List<NearByMePromotionImage>();
+                for (int i = 0; i < model.FileToUpload.Count; i++)
+                {
+                    string fileName = model.FileToUpload[i].GetFilename();
                     var path = Path.Combine(
                             Directory.GetCurrentDirectory(), "wwwroot",
-                            file.GetFilename());
-
+                            model.FileToUpload[i].GetFilename());
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
-                        await file.CopyToAsync(stream);
+                      await  model.FileToUpload[i].CopyToAsync(stream);
                     }
+                    FileDetails currentImage = new FileDetails();
+                    currentImage.Name = fileName;
+                    currentImage.Path = path;
+                    imagesName.Add(currentImage);
+
+                    NearByMePromotionImage tempObj = new NearByMePromotionImage();
+                    tempObj.imageId = i;
+                    tempObj.imagePath = currentImage.Name;
+                    nearByMePromotionImages.Add(tempObj);
 
                 }
-               
+
+
+
+                for (int i = 0; i < nearByMePromotionImages.Count; i++)
+                {
+                    for (int j = 0; j < imagesName.Count; j++)
+                    {
+                        if (nearByMePromotionImages[i].imagePath == imagesName[j].Name)
+                        {
+                            nearByMePromotionImages[i].imagePath = imagesName[j].Path;
+                            
+                        }
+                    }
+                }
+
+
+
+                var result = nearByMePromotionImages;
+
+
             }
             else
             {
@@ -114,6 +168,25 @@ namespace Fiver.Mvc.FileUpload.Controllers
 
             return RedirectToAction("Files");
         }
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public IActionResult Files()
         {
@@ -170,4 +243,6 @@ namespace Fiver.Mvc.FileUpload.Controllers
         }
     }
 }
+
+// POST /api/v1/near-by-me-promotion/addNewPromotion
 // end 

@@ -8,5 +8,7 @@ namespace Fiver.Mvc.FileUpload.Models.Home
         public string Username { get; set; }
         public int Password { get; set; }
         public List<IFormFile> FileToUpload { get; set; }
+
+
     }
 }
