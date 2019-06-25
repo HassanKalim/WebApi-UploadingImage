@@ -9,7 +9,7 @@ namespace Fiver.Mvc.FileUpload
         {
             BuildWebHost(args).Run();
         }
-
+        //test
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
