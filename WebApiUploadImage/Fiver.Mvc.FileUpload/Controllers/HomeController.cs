@@ -41,17 +41,8 @@ namespace Fiver.Mvc.FileUpload.Controllers
                 await file.CopyToAsync(stream);
             }
 
-
-
-
-
-
-
-
-
-
-
-            return RedirectToAction("Files");
+            return Ok();
+          //  return RedirectToAction("Files");
         }
 
         [HttpPost]
