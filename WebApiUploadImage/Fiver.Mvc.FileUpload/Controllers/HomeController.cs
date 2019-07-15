@@ -25,6 +25,7 @@ namespace Fiver.Mvc.FileUpload.Controllers
         {
             return View();
         }
+        //<ADG>
 
         [HttpPost]
         public async Task<IActionResult> UploadFile(IFormFile file)
